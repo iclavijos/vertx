@@ -6,3 +6,4 @@
 /.vertx/
 /.idea/
 /.gradle/
+/src/client/vertx-client/main
