@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+}
+
+group 'com.mimacom.ivan.vertx'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'io.vertx:vertx-web:3.5.4'
+    compile 'io.vertx:vertx-rx-java:3.5.4'
+    compile 'io.vertx:vertx-core:3.5.4'
+
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    compileOnly 'org.projectlombok:lombok:1.18.4'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.mimacom.ivan.vertx.server.Server'
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
